@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+body{
+     font-family: 'Kumbh Sans', sans-serif;
+     background-color: #E5F5FE;
+}
+
+.contain-logo{
+    /* width: 60%; */
+    /* margin: 3% auto; */
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+button{
+    background-color: #790052 !important;
+    border: 1px solid #790052 !important;
+    padding: 7px 12px !important;
+    color: #fff !important;
+}
+
+.contain-form{
+    width: 55%;
+    margin: 7% auto;
+}
+
+.orderDiv{
+    display: none;
+    position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.close {
+  color: #ccc;
+  float: right;
+  font-size: 35px;
+  color: #fff;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.closeOne {
+  color: #ccc;
+  float: right;
+  font-size: 50px;
+  color: #fff;
+}
+
+.closeOne:hover,
+.closeOne:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.closeTwo {
+  color: #ccc;
+  float: right;
+  font-size: 50px;
+  color: #fff;
+}
+
+.closeTwo:hover,
+.closeTwo:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#updateContainer{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+#newProContainer{
+    display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content {
+  margin: 10% auto;
+  width: 60%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  padding: 50px;
+}
+
+.modal-body {
+  padding: 10px 20px;
+  background: #fff;
+}
+
+.modal-footer {
+  /* background: #E5F5FE; */
+  /* background-color: red; */
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.contain-submit{
+    width: 85%;
+    margin: 0 auto;
+}
+
+.contain-button{
+    width: 75%;
+    margin: 2% auto;
+}
+/* .contain-button button{
+    margin: 2%;
+    border-radius: 15px;
+} */
+
+#forgot{
+    cursor: pointer;
+    text-align: right;
+}
+
+#forgot:hover{
+    color: #790052;
+}
+
+#create{
+    /* margin: 3% auto;  */
+    text-align: center;
+    /* font-size: 18px; */
+}
+
+.contact-one__field {
+  margin: 0;
+}
+.contact-one__field input,
+.contact-one__field textarea {
+  width: 100%;
+  display: block;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e4e4e4;
+  border-radius: 4px;
+  height: 50px;
+  padding-left: 15px;
+  margin-bottom: 20px;
+}
+.contact-one__field textarea {
+  height: 136px;
+  padding-top: 15px;
+}
+.contact-one__field label {
+  margin: 0;
+  color: #302e2f;
+  font-family: 'Kumbh Sans', sans-serif;
+  font-size: 16px;
+}
+
+.contact-one__field select{
+    width: 100%;
+    padding: 10px;
+    border-style: solid;
+  border-width: 1px;
+  border-color: #e4e4e4;
+  border-radius: 4px;
+  height: 50px;
+   margin-bottom: 20px;
+   padding-left: 15px;
+}
+
+#consultantDetails{
+    display: none;
+    
+}
+
+#newCustomerForm{
+    background-color: #fff;
+    padding: 50px;
+    display: none;
+}
+
+#searchForm{
+    display: none;
+}
+
+#pickCustomer{
+    width: 100%;
+    padding: 12px;
+    border-style: solid;
+  border-width: 1px;
+  border-color: #e4e4e4;
+  border-radius: 5px;
+}
+
+#customerPicker{
+    display: none;
+}
+
+#searchResult{
+    margin: 2% auto;
+    padding: 10px;
+}
+
+.result{
+    /* background-color: red; */
+    margin: 2% auto;
+    padding: 10px;
+    height: auto;
+}
+
+.content{
+    display: flex;
+    justify-content: space-between;
+    padding: 3px;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* .contentInner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+
+ul{
+    padding: 10px;
+}
+
+li{
+    font-size: 16px;
+}
+
+li:hover{
+    color:#790052;
+    cursor: pointer;
+}
+
+#productQuantity{
+    display: none;
+}
+
+#productQuantityOne{
+    display: none;
+   
+}
