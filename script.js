@@ -29,7 +29,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-
 let addBtn = document.getElementById("add");
 
 addBtn.addEventListener("click", (e) => {
@@ -120,16 +119,24 @@ newCustomer.addEventListener("click", (e) => {
   }
   //alert('ended here')
   localStorage.removeItem("products");
-  alert('New Customer Information Saved')
-  document.getElementById("fullName").value = '';
-  document.getElementById("age").value = '';
-  document.getElementById("email").value = '';
-  document.getElementById("phone").value = '';
-  document.getElementById("weight").value = '';
-  document.getElementById("height").value = '';
-  document.getElementById("bmi").value = '';
+  alert("New Customer Information Saved");
+  document.getElementById("fullName").value = "";
+  document.getElementById("age").value = "";
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("weight").value = "";
+  document.getElementById("height").value = "";
+  document.getElementById("bmi").value = "";
   document.getElementById("newCustomerForm").style.display = "none";
 });
+
+const closeBtnThree = document.querySelector(".closeThree");
+
+closeBtnThree.addEventListener("click", closeNewCustomerFormModal);
+
+function closeNewCustomerFormModal() {
+  document.getElementById("newCustomerForm").style.display = "none";
+}
 
 let customer = document.getElementById("customer");
 
@@ -150,6 +157,14 @@ updateBtn.addEventListener("click", (e) => {
   document.getElementById("customerPicker").style.display = "block";
 });
 
+const closeBtnFour = document.querySelector(".closeFour");
+
+closeBtnFour.addEventListener("click", closeOldUpdateModal);
+
+function closeOldUpdateModal() {
+  document.getElementById("customerPicker").style.display = "none";
+}
+
 let pickCustomer = document.getElementById("pickCustomer");
 
 pickCustomer.addEventListener("input", () => {
@@ -158,19 +173,19 @@ pickCustomer.addEventListener("input", () => {
   const db = getDatabase();
 
   if (pickedCustomer == "consultant") {
-  //  alert("consultant");
+    //  alert("consultant");
     const conRef = ref(db, "consultant");
 
     onValue(conRef, (snapshot) => {
       const consultantRef = snapshot.val();
 
-      console.log(consultantRef);
+      // console.log(consultantRef);
+      let dataTb = document.getElementById("dataTb");
+      dataTb.innerHTML = "";
 
       for (const key in consultantRef) {
-        console.log(key);
         const consDB = consultantRef[key];
-        console.log(consDB);
-        let result = document.getElementsByClassName("result")[0];
+        // let dataTb = document.getElementById("dataTb");
 
         const {
           age,
@@ -188,39 +203,42 @@ pickCustomer.addEventListener("input", () => {
         console.log(bmi);
 
         let resultContent = `
-           <div class='content'>
-           <h3>${fullName}</h3> 
-           <p>${age}</p>
-           <p>${gender}</p>
-           <p>${email}</p>
-           <p>${phoneNumber}</p>
-           <p>${height}</p>
-           <p>${weight}</p>
-           <p>${bmi}</p>
-           <p>${type}</p>
+           <tr>
+           <td>${fullName}</td> 
+           <td>${age}</td>
+           <td>${gender}</td>
+           <td>${email}</td>
+           <td>${phoneNumber}</td>
+           <td>${height}</td>
+           <td>${weight}</td>
+           <td>${bmi}</td>
+           <td>${type}</td>
+           <td>
            <button onclick="orderHistory('${key}')">Order History</button>
+           </td>
+           <td>
            <button onclick="editProfile('${key}','${type}')">Edit profile</button>
-           </div> `;
+           </td>
+           </tr> `;
 
         //  result.appendChild(resultContent);
-        result.innerHTML += resultContent;
+        // result.innerHTML += resultContent;
+        dataTb.innerHTML += resultContent;
       }
     });
   }
 
   if (pickedCustomer == "regular") {
-   // alert("regular");
+    // alert("regular");
     const regRef = ref(db, "regular");
 
     onValue(regRef, (snapshot) => {
       const regularRef = snapshot.val();
 
-      console.log(regularRef);
+      let dataTb = document.getElementById("dataTb");
+      dataTb.innerHTML = "";
       for (const key in regularRef) {
-        console.log(key);
         const regDB = regularRef[key];
-        console.log(regDB);
-        let result = document.getElementsByClassName("result")[0];
 
         const {
           age,
@@ -238,53 +256,56 @@ pickCustomer.addEventListener("input", () => {
         //console.log(bmi);
 
         let resultContent = `
-           <div class='content'>
-           <h3>${fullName}</h3> 
-           <p>${age}</p>
-           <p>${gender}</p>
-           <p>${email}</p>
-           <p>${phoneNumber}</p>
-           <p>${height}</p>
-           <p>${weight}</p>
-           <p>${bmi}</p>
-           <p>${type}</p>    
+           <tr>
+           <td>${fullName}</td> 
+           <td>${age}</td>
+           <td>${gender}</td>
+           <td>${email}</td>
+           <td>${phoneNumber}</td>
+           <td>${height}</td>
+           <td>${weight}</td>
+           <td>${bmi}</td>
+           <td>${type}</td>    
+           <td>
            <button onclick="orderHistory('${key}')">Order History</button>
+           </td>
+           <td>
            <button onclick="editProfile('${key}','${type}')">Edit profile</button>
-           </div> `;
+           </td>
+           </tr> `;
 
-        //  result.appendChild(resultContent);
-        result.innerHTML += resultContent;
+        dataTb.innerHTML += resultContent;
       }
     });
   }
 });
 
 window.orderHistory = (key) => {
-  //e.preventDefault();
-  console.log("heyy");
-  console.log(key);
-  window.present_key = key
+  // document.getElementById("customerPicker").style.display = "none";
+  window.present_key = key;
   const db = getDatabase();
 
   const orderRef = ref(db, "products/" + key);
-  console.log(orderRef);
   onValue(orderRef, (snapshot) => {
     const orderHistory = snapshot.val();
-    console.log(orderHistory);
-    //localStorage.setItem("Address", customerAddress);
+    var orderItems = document.getElementsByClassName("modal-body")[0];
+    orderItems.innerHTML = "";
     for (const key in orderHistory) {
       const history = orderHistory[key];
-      console.log(key);
-      //  console.log(key.toDateString());
+
+      const date = parseInt(key);
+      const dateOfPurchase = new Date(date);
+      const purchaseDate = dateOfPurchase.toDateString();
+
+      let purchaseheader = document.createElement("h4");
+      purchaseheader.innerHTML = purchaseDate;
+      orderItems.appendChild(purchaseheader);
       for (let i = 0; i < history.length; i++) {
         const element = history[i];
-        console.log(element);
-        // var orderItems = document.getElementsByClassName("orderDiv")[0];
-        var orderItems = document.getElementsByClassName("modal-body")[0];
         var orderRow = document.createElement("div");
         var orderRowContents = `
                             <div>
-                                 <h4>${key}</h4>
+                                 
                       <span class="cart-item-title">${element.productName}</span>
                       <span class="cart-quantity-input">${element.quantity}</span>
   </div>`;
@@ -295,13 +316,12 @@ window.orderHistory = (key) => {
     }
   });
 
-    document.getElementsByClassName("orderDiv")[0].style.display = "block";
+  document.getElementsByClassName("orderDiv")[0].style.display = "block";
 };
 
 const closeBtnOne = document.querySelector(".closeOne");
 
 closeBtnOne.addEventListener("click", closeHistoryModal);
-
 
 function closeHistoryModal() {
   document.getElementsByClassName("orderDiv")[0].style.display = "none";
@@ -309,41 +329,37 @@ function closeHistoryModal() {
 
 const newProBtn = document.getElementById("newPro");
 
-newProBtn.addEventListener('click', openNewProductModal)
+newProBtn.addEventListener("click", openNewProductModal);
 
 function openNewProductModal(e) {
-  e.preventDefault()
-  document.getElementById("newProContainer").style.display = 'block';
+  e.preventDefault();
+  document.getElementById("newProContainer").style.display = "block";
 
   closeHistoryModal();
 }
 
 const closeBtnTwo = document.querySelector(".closeTwo");
 
-closeBtnTwo.addEventListener('click', closeNewProductModal)
+closeBtnTwo.addEventListener("click", closeNewProductModal);
 
 function closeNewProductModal() {
-  document.getElementById("newProContainer").style.display = 'none';
+  document.getElementById("newProContainer").style.display = "none";
 }
 
 window.editProfile = (key, type) => {
-  console.log("heyyyo");
-  console.log(key);
-  console.log(type);
+  // document.getElementById("customerPicker").style.display = "none";
+
   window.present_profile = {
     key,
-    type
-  }
+    type,
+  };
 
   const db = getDatabase();
   if (type == "regular") {
-    // alert('type is' + type)
     const editReg = ref(db, `${type}/${key}`);
-    console.log(editReg);
-    // set(ref(db, "consultant/" + `${userID}`), conDetails);
+
     onValue(editReg, (snapshot) => {
       const editRegProfile = snapshot.val();
-      console.log(editRegProfile);
 
       const {
         age,
@@ -369,13 +385,10 @@ window.editProfile = (key, type) => {
     });
   }
   if (type == "consultant") {
-    // alert('type is' + type)
     const editCon = ref(db, `${type}/${key}`);
-    console.log(editCon);
     // set(ref(db, "consultant/" + `${userID}`), conDetails);
     onValue(editCon, (snapshot) => {
       const editConProfile = snapshot.val();
-      console.log(editConProfile);
 
       const {
         age,
@@ -406,7 +419,6 @@ window.editProfile = (key, type) => {
   }
 
   document.getElementById("updateContainer").style.display = "block";
-  
 };
 
 // function updProBtn() {
@@ -415,14 +427,9 @@ window.editProfile = (key, type) => {
 
 let updProBtn = document.getElementById("updProBtn");
 
-
-
 const updProfile = (e) => {
-   e.preventDefault();
+  e.preventDefault();
   const { key, type } = window.present_profile;
-  console.log(key, type);
-  // e.preventDefault();
- // alert("people");
   let fullName = document.getElementById("fullNameEdit").value;
   let age = document.getElementById("ageEdit").value;
   let emailAddress = document.getElementById("emailEdit").value;
@@ -430,7 +437,7 @@ const updProfile = (e) => {
   let weight = document.getElementById("weightEdit").value;
   let height = document.getElementById("heightEdit").value;
   let bmi = document.getElementById("bmiEdit").value;
- // console.log(fullName, age, emailAddress)
+  // console.log(fullName, age, emailAddress)
 
   const details = {
     fullName: fullName,
@@ -443,72 +450,57 @@ const updProfile = (e) => {
   };
   const db = getDatabase();
   update(ref(db, `${type}/${key}`), details);
- // set(ref(db, "history/" + `${userId}/${orderId}`), historyCart);
- // alert('ended')
+  document.getElementById("updateContainer").style.display = "none";
+  // set(ref(db, "history/" + `${userId}/${orderId}`), historyCart);
+  // alert('ended')
 };
 
 updProBtn.addEventListener("click", updProfile);
-
 
 const closeBtn = document.querySelector(".close");
 
 closeBtn.addEventListener("click", closeModal);
 
 function closeModal() {
- document.getElementById("updateContainer").style.display = "none";
+  document.getElementById("updateContainer").style.display = "none";
 }
-
-
 
 let searchBtn = document.getElementById("searchBtn");
 
 searchBtn.addEventListener("click", (e) => {
   e.preventDefault();
- // console.log("hey there");
   let searchInput = document.getElementById("searchInput").value;
-  console.log(searchInput);
+  let searchValue = searchInput.charAt(0).toUpperCase() + searchInput.slice(1);
+  // console.log(searchInput);
+  // console.log(searchValue)
 
-  let content = document.getElementsByClassName("content");
-  console.log(content);
+  let content = document.getElementsByTagName('tr');
 
   for (let j = 0; j < content.length; j++) {
-    console.log("hi");
-    const contentName = content[j].getElementsByTagName("h3");
-    console.log(contentName);
+    const contentName = content[j].getElementsByTagName("td");
 
     for (let k = 0; k < contentName.length; k++) {
-      console.log("hey");
       const element = contentName[k];
 
       let para = "Cannot find this name, please modify your search";
 
       let textValue = element.textContent || contentName.innerText;
-      console.log(textValue);
 
-      if (textValue.indexOf(searchInput) > -1) {
+      // if (textValue.indexOf(searchInput) > -1) {
+
+      if (
+        textValue.indexOf(searchValue) > -1 ||
+        textValue.includes(searchInput)
+      ) {
         document
           .getElementById("searchResult")
           .appendChild(element.parentElement);
-        // document
-        //   .getElementById("searchResult").innerHTML = element.parentElement;
       }
-      // else {
-      //   //  document
-      //   //    .getElementById("searchResult")
-      //   //    .appendChild(para);
-      //   document.getElementById("searchResult").innerHTML += para;
-      // }
     }
   }
 });
 
 let productItems = document.getElementsByTagName("li");
-
-//console.log(productItems)
-
-// productItems.forEach(element => {
-//   element.addEventListener('click', openQualityModal)
-// });
 
 for (let index = 0; index < productItems.length; index++) {
   const element = productItems[index];
@@ -520,7 +512,7 @@ function openQualityModal(e) {
   document.getElementById("productQuantity").style.display = "block";
   document.getElementById("productQuantityOne").style.display = "block";
   document.getElementById("selectedProduct").value = e.target.innerText;
-    document.getElementById("selectedProductOne").value = e.target.innerText;
+  document.getElementById("selectedProductOne").value = e.target.innerText;
 }
 
 let saveBtn = document.getElementById("saveProduct");
@@ -573,8 +565,8 @@ function saveProductToLocalStorage(e) {
 
 let newSaveBtn = document.getElementById("saveNewProduct");
 
-newSaveBtn.addEventListener('click', (e) => {
-  e.preventDefault()
+newSaveBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   let productInput = document.getElementById("selectedProductOne").value;
   let quantityInput = document.getElementById("quantityOne").value;
 
@@ -613,31 +605,27 @@ newSaveBtn.addEventListener('click', (e) => {
 
     productsSoF.innerHTML += productsContent;
   }
-document.getElementById("selectedProductOne").value = "";
-document.getElementById("quantityOne").value = "";
-
-})
+  document.getElementById("selectedProductOne").value = "";
+  document.getElementById("quantityOne").value = "";
+});
 
 let addNewProductsBtn = document.getElementById("addNewProductsBtn");
 
-addNewProductsBtn.addEventListener('click', (e) => {
-  e.preventDefault()
+addNewProductsBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   // alert("ada");
-   const db = getDatabase();
-  alert(window.present_key);
-   let products = JSON.parse(localStorage.getItem("newProducts"));
+  const db = getDatabase();
+  // alert(window.present_key);
+  let products = JSON.parse(localStorage.getItem("newProducts"));
   let date = Date.parse(document.getElementById("input").value);
-  console.log(date)
+  // console.log(date);
 
   set(ref(db, "products/" + `${window.present_key}/${date}`), products);
 
-  alert('Successfully Saved')
+  alert("Successfully Saved");
 
   localStorage.removeItem("newProducts");
   closeNewProductModal();
-})
-
-
-
+});
 
 // }) THIS IS FOR THE DOMLOADED EVENT LISTENER

@@ -78,6 +78,34 @@ button{
   cursor: pointer;
 }
 
+.closeThree {
+  color: #ccc;
+  float: right;
+  font-size: 50px;
+  color: #fff;
+}
+
+.closeThree:hover,
+.closeThree:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.closeFour {
+  color: #ccc;
+  float: right;
+  font-size: 50px;
+  color: #fff;
+}
+
+.closeFour:hover,
+.closeFour:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 #updateContainer{
   display: none;
   position: fixed;
@@ -110,6 +138,16 @@ button{
   padding: 50px;
 }
 
+.modal-content-cus{
+   margin: 10% auto;
+  width: 100%;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  background-color: #fff;
+  animation-name: modalopen;
+  animation-duration: var(--modal-duration);
+  padding: 50px;
+}
+
 .modal-body {
   padding: 10px 20px;
   background: #fff;
@@ -125,7 +163,7 @@ button{
   border-bottom-right-radius: 5px;
 }
 .contain-submit{
-    width: 85%;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -197,9 +235,17 @@ button{
 }
 
 #newCustomerForm{
-    background-color: #fff;
+    /* background-color: #fff; */
     padding: 50px;
     display: none;
+    position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #searchForm{
@@ -217,6 +263,16 @@ button{
 
 #customerPicker{
     display: none;
+     padding: 50px;
+    display: none;
+    position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #searchResult{
@@ -227,18 +283,18 @@ button{
 .result{
     /* background-color: red; */
     margin: 2% auto;
-    padding: 10px;
+    /* padding: 10px; */
     height: auto;
 }
 
-.content{
+/* .content{
     display: flex;
     justify-content: space-between;
     padding: 3px;
     align-items: center;
     width: 100%;
     margin: 0 auto;
-}
+} */
 
 /* .contentInner{
     display: flex;
@@ -266,4 +322,10 @@ li:hover{
 #productQuantityOne{
     display: none;
    
+}
+
+th, td {
+  padding: 7px;
+  text-align: center;
+  /* text-align: left; */
 }

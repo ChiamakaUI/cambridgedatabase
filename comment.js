@@ -220,3 +220,42 @@
 // console.log(uuid.v4())
 
 // uuidv4();
+
+
+        //  let resultContent = `
+        //    <div class='content'>
+        //    <h3>${fullName}</h3> 
+        //    <p>${age}</p>
+        //    <p>${gender}</p>
+        //    <p>${email}</p>
+        //    <p>${phoneNumber}</p>
+        //    <p>${height}</p>
+        //    <p>${weight}</p>
+        //    <p>${bmi}</p>
+        //    <p>${type}</p>    
+        //    <button onclick="orderHistory('${key}')">Order History</button>
+        //    <button onclick="editProfile('${key}','${type}')">Edit profile</button>
+        //    </div> `;
+
+        //  result.appendChild(resultContent);
+       // result.innerHTML += resultContent;
+       
+        const history = orderHistory[key];
+        // const date = new Date(key)
+        // const purchaseDate = date.toString()
+        // console.log(date)
+        //  console.log(purchaseDate);
+        const event1 = new Date(1641855600000);
+        const event2 = parseInt(key);
+        console.log(event2);
+        // const event2 = new Date(key)
+        const event3 = new Date(event2);
+        const event4 = event3.toString();
+        const event5 = event3.toDateString();
+        console.log(event1.toString());
+        // console.log(event2.toString());
+console.log(event3.toString());
+        
+const date = parseInt(key);
+const dateOfPurchase = new Date(date)
+const purchaseDate = dateOfPurchase.toDateString()

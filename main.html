@@ -27,8 +27,14 @@
     <button id="add">Add New Customer</button>
     <button id="update">Update Existing Customer Details</button>
   </div>
-  <div class="contain-form">
-    <form id="newCustomerForm">
+  <div class="contain-form" id="newCustomerForm">
+    <!-- <form id="newCustomerForm"> -->
+      <div class="modal-header">
+        <span class="closeThree">&times;</span>
+      
+      </div>
+      <div class="modal-content">
+    <form>
       <div class="row">
         <div class="col-lg-6">
           <p class="contact-one__field">
@@ -276,14 +282,20 @@
 
 
     </form>
+      </div>
   </div>
-  <div class="contain-form" id="customerPicker">
-    <select id="pickCustomer">
+  <div id="customerPicker">
+      <!-- <div class="contain-form" id="customerPicker"> -->
+    <div class="modal-header">
+      <span class="closeFour">&times;</span>
+    </div>
+    <div class="modal-content-cus">
+    <select id="pickCustomer" class="contain-form">
       <option selected>Please, pick customer type</option>
       <option value="regular">Regular Customer</option>
       <option value="consultant">Consultant</option>
     </select>
-  </div>
+  <!-- </div> this is where the div orginally ends -->
 
   <div class="contain-submit" id="searchForm">
     <div class="input-group">
@@ -294,9 +306,33 @@
 
     </div>
     <div class="result">
+      <table>
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Height</th>
+          <th>Weight</th>
+          <th>BMI</th>
+          <th>Type</th>
+        </tr>
+        </thead>
+        <tbody id="dataTb">
+
+        </tbody>
+
+      </table>
 
     </div>
   </div>
+  </div>
+  </div>
+
+
+
   <div class="orderDiv">
     <div class="modal-header">
       <span class="closeOne">&times;</span>
@@ -318,8 +354,6 @@
 
     </div>
     <div class="modal-content">
-
-
       <form id="editForm">
         <div class="row">
           <div class="col-lg-6">
