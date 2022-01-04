@@ -190,6 +190,7 @@ pickCustomer.addEventListener("input", () => {
         const {
           age,
           bmi,
+          cambridgeID,
           email,
           fullName,
           gender,
@@ -199,7 +200,7 @@ pickCustomer.addEventListener("input", () => {
           weight,
         } = consDB;
 
-        console.log(age);
+        console.log(cambridgeID);
         console.log(bmi);
 
         let resultContent = `
@@ -213,6 +214,7 @@ pickCustomer.addEventListener("input", () => {
            <td>${weight}</td>
            <td>${bmi}</td>
            <td>${type}</td>
+           <td>${cambridgeID}</td>
            <td>
            <button onclick="orderHistory('${key}')">Order History</button>
            </td>
@@ -266,6 +268,7 @@ pickCustomer.addEventListener("input", () => {
            <td>${weight}</td>
            <td>${bmi}</td>
            <td>${type}</td>    
+           <td>-</td>  
            <td>
            <button onclick="orderHistory('${key}')">Order History</button>
            </td>
@@ -415,7 +418,12 @@ window.editProfile = (key, type) => {
       document.getElementById("weightEdit").value = weight;
       document.getElementById("heightEdit").value = height;
       document.getElementById("bmiEdit").value = bmi;
+      document.getElementById('camIDCon').style.display = 'block'
+      document.getElementById('camEdit').value = cambridgeID
     });
+  } 
+  else{
+    document.getElementById('camIDCon').style.display = 'none'
   }
 
   document.getElementById("updateContainer").style.display = "block";
@@ -437,9 +445,9 @@ const updProfile = (e) => {
   let weight = document.getElementById("weightEdit").value;
   let height = document.getElementById("heightEdit").value;
   let bmi = document.getElementById("bmiEdit").value;
-  // console.log(fullName, age, emailAddress)
+  let camID = document.getElementById('camEdit').value
 
-  const details = {
+  let details = {
     fullName: fullName,
     age,
     email: emailAddress,
@@ -447,7 +455,15 @@ const updProfile = (e) => {
     weight,
     height,
     bmi,
-  };
+  }
+
+  if(camID !== ''){
+    details = {
+      ...details,
+      cambridgeID: camID
+    }
+  }
+
   const db = getDatabase();
   update(ref(db, `${type}/${key}`), details);
   document.getElementById("updateContainer").style.display = "none";
