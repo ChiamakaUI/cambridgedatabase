@@ -21,7 +21,8 @@
 
 <body>
   <div class="contain-logo">
-    <img src="camLogo.gif" />
+    <!-- <img src="camLogo.gif" /> -->
+    <img src="NcamLogo.png" />
   </div>
   <div class="contain-button">
     <button id="add">Add New Customer</button>
@@ -29,310 +30,464 @@
   </div>
   <div class="contain-form" id="newCustomerForm">
     <!-- <form id="newCustomerForm"> -->
-      <div class="modal-header">
-        <span class="closeThree">&times;</span>
-      
-      </div>
-      <div class="modal-content">
-    <form>
-      <div class="row">
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Full Name: </label>
-            <input type="text" id="fullName" />
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Age: </label>
-            <input type="number" id="age" />
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Gender: </label>
-            <select id="gender">
-              <option selected>Gender</option>
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-            </select>
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Email Address: </label>
-            <input type="email" id="email" />
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Phone Number: </label>
-            <input type="number" id="phone" />
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Weight: </label>
-            <input type="number" id="weight" />
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Height: </label>
-            <input type="number" id="height" />
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>BMI: </label>
-            <input type="text" id="bmi" />
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Customer type: </label>
-            <select id="customer">
-              <option selected>Type</option>
-              <option value="regular">Regular Customer</option>
-              <option value="consultant">Consultant</option>
-            </select>
-          </p>
-        </div>
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Date: </label>
-            <input type="text" class="form-control" id="pick-date" placeholder="Click To Pick Date">
-          </p>
-        </div>
+    <div class="modal-header">
+      <span class="closeThree">&times;</span>
 
-        <div class="row" id="consultantDetails">
+    </div>
+    <div class="modal-content">
+      <form>
+        <div class="row">
           <div class="col-lg-6">
             <p class="contact-one__field">
-              <label>Location: </label>
-              <input type="text" id="location" />
+              <label>Full Name: </label>
+              <input type="text" id="fullName" />
             </p>
           </div>
           <div class="col-lg-6">
             <p class="contact-one__field">
-              <label>Cambridge ID Number: </label>
-              <input type="text" id="camID" />
+              <label>Age: </label>
+              <input type="number" id="age" />
             </p>
           </div>
-        </div>
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>Gender: </label>
+              <select id="gender">
+                <option selected>Gender</option>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+              </select>
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>Email Address: </label>
+              <input type="email" id="email" />
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>Phone Number: </label>
+              <input type="number" id="phone" />
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>Weight: </label>
+              <input type="number" id="weight" />
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>Height: </label>
+              <input type="number" id="height" />
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>BMI: </label>
+              <input type="text" id="bmi" />
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>Customer type: </label>
+              <select id="customer">
+                <option selected>Type</option>
+                <option value="regular">Client</option>
+                <option value="consultant">Consultant</option>
+              </select>
+            </p>
+          </div>
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>Date: </label>
+              <input type="text" class="form-control" id="pick-date" placeholder="Click To Pick Date">
+            </p>
+          </div>
 
-
-        <div class="col-lg-6">
-          <p class="contact-one__field">
-            <label>Products: </label>
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                  aria-expanded="true" aria-controls="collapseOne">
-                  Porridge
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Original</li>
-                    <li>Apple</li>
-                    <li>Cinnamon</li>
-                  </ul>
-                </div>
-              </div>
+          <div class="row" id="consultantDetails">
+            <div class="col-lg-6">
+              <p class="contact-one__field">
+                <label>Location: </label>
+                <input type="text" id="location" />
+              </p>
             </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Pudding
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Vanilla Rice Pudding</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Shakes
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Chocolate</li>
-                    <li>Lactose Free Chocolate</li>
-                    <li>Chocolate Mint</li>
-                    <li>Chocolate Orange</li>
-                    <li>Vanilla</li>
-                    <li>Lactose Free Vanilla</li>
-                    <li>Cappucino</li>
-                    <li>Strawberry</li>
-                    <li>Fruit of Forest</li>
-                    <li>Toffee & walnut</li>
-                    <li>Butterscotch</li>
-                    <li>Banana</li>
-                    <li>Mango</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFour">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                  Soups
-                </button>
-              </h2>
-              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Tomato & Basil</li>
-                    <li>Leek & Potato - Lactose Free</li>
-                    <li>Mushroom </li>
-                    <li>Chicken & Mushroom</li>
-                    <li>Oriental Chilli</li>
-                    <li>Vegetable Soup</li>
-                    <li>Spaghetti Bolognese</li>
-                    <li>Mushroom Risotto</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingFive">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                  Bars
-                </button>
-              </h2>
-              <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Chocolate</li>
-                    <li>Malt Toffee</li>
-                    <li>Orange</li>
-                    <li>Peanut Crunch</li>
-                    <li>Cranberry Crunch</li>
-                    <li>Chocolate Mint</li>
-                    <li>Lemon</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingSix">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                  Extras
-                </button>
-              </h2>
-              <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  <ul>
-                    <li>Sunshine Orange</li>
-                    <li>Summer Berry</li>
-                    <li>Fibre</li>
-                    <li>Mousse Mix</li>
-                    <li>Shaker</li>
-                  </ul>
-                </div>
-              </div>
+            <div class="col-lg-6">
+              <p class="contact-one__field">
+                <label>Cambridge ID Number: </label>
+                <input type="text" id="camID" />
+              </p>
             </div>
           </div>
-          </p>
-        </div>
+
+
+          <div class="col-lg-6">
+            <p class="contact-one__field">
+              <label>Products: </label>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    Porridges
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Original</li>
+                      <li>Apple and Cinnamon</li>
+                      <li>Mixed Berry</li>
+                      <li>Golden Syrup</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Smoothies
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Breakfast Banana & strawberry</li>
+                      <li>Apple and blackcurrant</li>
+                      <li>Cherry and strawberry</li>
+                      <li>Raspberry Coconut Oat</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    Shakes
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Chocolate</li>
+                      <li>Lactose Free Chocolate</li>
+                      <li>Chocolate Mint</li>
+                      <li>Vanilla</li>
+                      <li>Lactose Free Vanilla</li>
+                      <li>Cappucino</li>
+                      <li>Strawberry</li>
+                      <li>Banana</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Soups
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Leek & Potato (lactose free)</li>
+                      <li>Mushroom-lactose free</li>
+                      <li>Chicken and Mushroom</li>
+                      <li>Vegetable and Croutons soup</li>
+                      <li>Oriental Chilli</li>
+                      <li>Goulash Soup</li>
+                      <li>Chicken with Noodle soup</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    Bars
+                  </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Chocolate</li>
+                      <li>Apple & Strawberry yoghurt</li>
+                      <li>Lemon yoghurt</li>
+                      <li>Chocolate & Orange infusion</li>
+                      <li>Peanut Crispy</li>
+                      <li>Cherry Bake well</li>
+                      <li>Chocolate and Ginger</li>
+                      <li>Chocolate Mint</li>
+                      <li>Toffee</li>
+                      <li>Banoffee</li>
+                      <li>Festive</li>
+                      <li>Mocha</li>
+                      <li>Apple & Cinnamon Oat</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    Meals
+                  </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Spaghetti Bolognese</li>
+                      <li>Macaroni Cheese</li>
+                      <li>Chicken Tikka</li>
+                      <li>Cous Cous</li>
+                      <li>Thai Green</li>
+                      <li>Green Pesto Pasta</li>
+                      <li>Cottage Pie</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Bites
+                  </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Choc Mint</li>
+                      <li>Salted Caramel</li>
+                      <li>Irish Cream Bites</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    Pop Squares Veggies Chips
+                  </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Roast Chicken Flavour</li>
+                      <li>Cheese & Onion Flavour</li>
+                      <li>BBQ Flavour</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNine">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    Tetras(Shake N Go)
+                  </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Chocolate</li>
+                      <li>Latte</li>
+                      <li>Apple & Kiwi flavour Yogurt</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTen">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                    Water Flavours
+                  </button>
+                </h2>
+                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Lemon & Lime</li>
+                      <li>Raspberry& Elder</li>
+                      <li>Coconut</li>
+                      <li>Orange</li>
+                      <li>Pineapple</li>
+                      <li>Winter Spice</li>
+                      <li>Golden Vegetable</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEleven">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                    Others
+                  </button>
+                </h2>
+                <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven"
+                  data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    <ul>
+                      <li>Fibre 89</li>
+                      <li>Mousse A Mix</li>
+                      <li>Shaker</li>
+                      <li>Books(E- book available on request)</li>
+                      <li>Bags</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
 
 
 
-        <div class="col-lg-6" id="productQuantity">
-          <!-- <p> Product Name: <span id="pN"></span> Quantity Ordered: <span id="qO"></span></p> -->
-          <div class="productsSoFar">
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            </p>
           </div>
-          <p class="contact-one__field">
-            <label>Selected Product: </label>
-            <input type="text" id="selectedProduct" />
-          </p>
-          <p class="contact-one__field">
-            <label>Quantity: </label>
-            <input type="number" id="quantity" />
-          </p>
-          <button id="saveProduct">Save Product</button>
+
+
+
+          <div class="col-lg-6" id="productQuantity">
+            <!-- <p> Product Name: <span id="pN"></span> Quantity Ordered: <span id="qO"></span></p> -->
+            <div class="productsSoFar">
+
+
+            </div>
+            <p class="contact-one__field">
+              <label>Selected Product: </label>
+              <input type="text" id="selectedProduct" />
+            </p>
+            <p class="contact-one__field">
+              <label>Quantity: </label>
+              <input type="number" id="quantity" />
+            </p>
+            <button id="saveProduct">Save Product</button>
+          </div>
+          <div class="col-lg-12">
+            <button type="submit" class="btn btn-primary" id='addNewBtn'>Submit</button>
+          </div>
         </div>
-        <div class="col-lg-12">
-          <button type="submit" class="btn btn-primary" id='addNewBtn'>Submit</button>
-        </div>
-      </div>
 
 
 
-    </form>
-      </div>
+      </form>
+    </div>
   </div>
   <div id="customerPicker">
-      <!-- <div class="contain-form" id="customerPicker"> -->
+    <!-- <div class="contain-form" id="customerPicker"> -->
     <div class="modal-header">
       <span class="closeFour">&times;</span>
     </div>
     <div class="modal-content-cus">
-    <select id="pickCustomer" class="contain-form">
-      <option selected>Please, pick customer type</option>
-      <option value="regular">Regular Customer</option>
-      <option value="consultant">Consultant</option>
-    </select>
-  <!-- </div> this is where the div orginally ends -->
+      <select id="pickCustomer" class="contain-form">
+        <option selected>Please, pick customer type</option>
+        <option value="regular">Client</option>
+        <option value="consultant">Consultant</option>
+      </select>
+      <!-- </div> this is where the div orginally ends -->
 
-  <div class="contain-submit" id="searchForm">
-    <div class="input-group">
-      <input type="search" class="form-control rounded" placeholder="Search" id="searchInput" />
-      <button type="button" class="btn btn-outline-primary" id="searchBtn">Search</button>
-    </div>
-    <div id="searchResult">
+      <div class="contain-submit" id="searchForm">
+        <div class="input-group">
+          <input type="search" class="form-control rounded" placeholder="Search" id="searchInput" />
+          <button type="button" class="btn btn-outline-primary" id="searchBtn">Search</button>
+        </div>
+        <div id="searchResult">
 
-    </div>
-    <div class="result">
-      <table>
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Gender</th>
-          <th>Email</th>
-          <th>Phone</th>
-          <th>Height</th>
-          <th>Weight</th>
-          <th>BMI</th>
-          <th>Type</th>
-          <th>Cam ID</th>
-        </tr>
-        </thead>
-        <tbody id="dataTb">
+        </div>
+        <div class="result">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>BMI</th>
+                <th>Type</th>
+                <th>Cam ID</th>
+              </tr>
+            </thead>
+            <tbody id="dataTb">
 
-        </tbody>
+            </tbody>
 
-      </table>
+          </table>
 
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-  </div>
- 
-  <!-- testing -->
+
 
 
   <div class="orderDiv">
@@ -455,7 +610,7 @@
                 <input type="text" class="form-control" id="input" placeholder="Click To Pick Date">
               </p>
             </div>
-            
+
             <div class="col-lg-6">
               <p class="contact-one__field">
                 <label>Products: </label>
@@ -464,7 +619,7 @@
                   <h2 class="accordion-header" id="headingOne">
                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                      Porridge
+                      Porridges
                     </button>
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
@@ -472,8 +627,9 @@
                     <div class="accordion-body">
                       <ul>
                         <li>Original</li>
-                        <li>Apple</li>
-                        <li>Cinnamon</li>
+                        <li>Apple and Cinnamon</li>
+                        <li>Mixed Berry</li>
+                        <li>Golden Syrup</li>
                       </ul>
                     </div>
                   </div>
@@ -482,14 +638,17 @@
                   <h2 class="accordion-header" id="headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                      Pudding
+                      Smoothies
                     </button>
                   </h2>
                   <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <ul>
-                        <li>Vanilla Rice Pudding</li>
+                        <li>Breakfast Banana & strawberry</li>
+                        <li>Apple and blackcurrant</li>
+                        <li>Cherry and strawberry</li>
+                        <li>Raspberry Coconut Oat</li>
                       </ul>
                     </div>
                   </div>
@@ -508,16 +667,11 @@
                         <li>Chocolate</li>
                         <li>Lactose Free Chocolate</li>
                         <li>Chocolate Mint</li>
-                        <li>Chocolate Orange</li>
                         <li>Vanilla</li>
                         <li>Lactose Free Vanilla</li>
                         <li>Cappucino</li>
                         <li>Strawberry</li>
-                        <li>Fruit of Forest</li>
-                        <li>Toffee & walnut</li>
-                        <li>Butterscotch</li>
                         <li>Banana</li>
-                        <li>Mango</li>
                       </ul>
                     </div>
                   </div>
@@ -533,14 +687,13 @@
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <ul>
-                        <li>Tomato & Basil</li>
-                        <li>Leek & Potato - Lactose Free</li>
-                        <li>Mushroom </li>
-                        <li>Chicken & Mushroom</li>
+                        <li>Leek & Potato (lactose free)</li>
+                        <li>Mushroom-lactose free</li>
+                        <li>Chicken and Mushroom</li>
+                        <li>Vegetable and Croutons soup</li>
                         <li>Oriental Chilli</li>
-                        <li>Vegetable Soup</li>
-                        <li>Spaghetti Bolognese</li>
-                        <li>Mushroom Risotto</li>
+                        <li>Goulash Soup</li>
+                        <li>Chicken with Noodle soup</li>
                       </ul>
                     </div>
                   </div>
@@ -557,12 +710,18 @@
                     <div class="accordion-body">
                       <ul>
                         <li>Chocolate</li>
-                        <li>Malt Toffee</li>
-                        <li>Orange</li>
-                        <li>Peanut Crunch</li>
-                        <li>Cranberry Crunch</li>
+                        <li>Apple & Strawberry yoghurt</li>
+                        <li>Lemon yoghurt</li>
+                        <li>Chocolate & Orange infusion</li>
+                        <li>Peanut Crispy</li>
+                        <li>Cherry Bake well</li>
+                        <li>Chocolate and Ginger</li>
                         <li>Chocolate Mint</li>
-                        <li>Lemon</li>
+                        <li>Toffee</li>
+                        <li>Banoffee</li>
+                        <li>Festive</li>
+                        <li>Mocha</li>
+                        <li>Apple & Cinnamon Oat</li>
                       </ul>
                     </div>
                   </div>
@@ -571,18 +730,116 @@
                   <h2 class="accordion-header" id="headingSix">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                       data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                      Extras
+                      Meals
                     </button>
                   </h2>
                   <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
                     data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                       <ul>
-                        <li>Sunshine Orange</li>
-                        <li>Summer Berry</li>
-                        <li>Fibre</li>
-                        <li>Mousse Mix</li>
+                        <li>Spaghetti Bolognese</li>
+                        <li>Macaroni Cheese</li>
+                        <li>Chicken Tikka</li>
+                        <li>Cous Cous</li>
+                        <li>Thai Green</li>
+                        <li>Green Pesto Pasta</li>
+                        <li>Cottage Pie</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSeven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                      Bites
+                    </button>
+                  </h2>
+                  <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>Choc Mint</li>
+                        <li>Salted Caramel</li>
+                        <li>Irish Cream Bites</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingEight">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      Pop Squares Veggies Chips
+                    </button>
+                  </h2>
+                  <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>Roast Chicken Flavour</li>
+                        <li>Cheese & Onion Flavour</li>
+                        <li>BBQ Flavour</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingNine">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                      Tetras(Shake N Go)
+                    </button>
+                  </h2>
+                  <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>Chocolate</li>
+                        <li>Latte</li>
+                        <li>Apple & Kiwi flavour Yogurt</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTen">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                      Water Flavours
+                    </button>
+                  </h2>
+                  <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>Lemon & Lime</li>
+                        <li>Raspberry& Elder</li>
+                        <li>Coconut</li>
+                        <li>Orange</li>
+                        <li>Pineapple</li>
+                        <li>Winter Spice</li>
+                        <li>Golden Vegetable</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingEleven">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                      Others
+                    </button>
+                  </h2>
+                  <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <ul>
+                        <li>Fibre 89</li>
+                        <li>Mousse A Mix</li>
                         <li>Shaker</li>
+                        <li>Books(E- book available on request)</li>
+                        <li>Bags</li>
                       </ul>
                     </div>
                   </div>
@@ -590,7 +847,7 @@
               </div>
               </p>
             </div>
-            
+
             <div class="col-lg-6" id="productQuantityOne">
               <!-- <p> Product Name: <span id="pN"></span> Quantity Ordered: <span id="qO"></span></p> -->
               <div class="productsSoFar">

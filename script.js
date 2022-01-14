@@ -92,7 +92,7 @@ newCustomer.addEventListener("click", (e) => {
     weight,
     height,
     bmi,
-    type: customerType,
+    // type: customerType,
   };
 
   const conDetails = {
@@ -267,7 +267,7 @@ pickCustomer.addEventListener("input", () => {
            <td>${height}</td>
            <td>${weight}</td>
            <td>${bmi}</td>
-           <td>${type}</td>    
+           <td>-</td>    
            <td>-</td>  
            <td>
            <button onclick="orderHistory('${key}')">Order History</button>
@@ -300,7 +300,7 @@ window.orderHistory = (key) => {
       const dateOfPurchase = new Date(date);
       const purchaseDate = dateOfPurchase.toDateString();
 
-      let purchaseheader = document.createElement("h4");
+      let purchaseheader = document.createElement("h5");
       purchaseheader.innerHTML = purchaseDate;
       orderItems.appendChild(purchaseheader);
       for (let i = 0; i < history.length; i++) {

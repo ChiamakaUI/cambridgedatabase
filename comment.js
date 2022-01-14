@@ -259,3 +259,9 @@ console.log(event3.toString());
 const date = parseInt(key);
 const dateOfPurchase = new Date(date)
 const purchaseDate = dateOfPurchase.toDateString()
+
+const arr = [1,2,3,4,5,6]
+
+arr.forEach(element => {
+        element * 2
+});

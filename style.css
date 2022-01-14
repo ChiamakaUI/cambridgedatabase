@@ -12,6 +12,11 @@ body{
     margin-left: 20px;
 }
 
+.contain-logo img{
+  width: 279px;
+  height: 103px;
+}
+
 button{
     background-color: #790052 !important;
     border: 1px solid #790052 !important;
