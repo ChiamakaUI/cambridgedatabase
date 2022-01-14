@@ -338,3 +338,58 @@ th, td {
 #camIDCon{
   display: none;
 }
+
+@media (max-width: 480px) {
+  .contain-logo img{
+    width: 120px;
+    height: 85px;
+  }
+
+  .contain-button{
+    width: 85%;
+    margin: 10% auto;
+}
+
+.contain-button button{
+ display: block;
+ margin: 3% auto;
+}
+
+.contain-form{
+  width: 95%;
+  /* margin: 7% auto; */
+}
+.modal-content {
+  width: 100%;
+  padding: 20px;
+
+}
+
+#newCustomerForm{
+  padding: 20px;
+}
+
+#customerPicker{
+  display: none;
+   padding: 20px;
+}
+
+.modal-content-cus{
+  padding: 20px;
+}
+
+table{
+  width: 100% !important;
+  margin: 0 auto;
+}
+
+.result{
+  width: 100% !important;
+}
+
+
+#addNewProductsBtn{
+  margin-top: 5%;
+}
+
+}
