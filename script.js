@@ -33,7 +33,80 @@ let addBtn = document.getElementById("add");
 
 addBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  document.getElementById("newCustomerForm").style.display = "block";
+  // document.getElementById("newCustomerForm").style.display = "block";
+  document.getElementById("selectNewCustomerForm").style.display = "block";
+});
+
+let pickCustomerForm = document.getElementById("pickCustomerForm");
+
+pickCustomerForm.addEventListener("input", () => {
+  let pickedCustomerForm = document.getElementById("pickCustomerForm").value;
+  if (pickedCustomerForm == "regular") {
+    //console.log(pickedCustomerForm);
+    document.getElementById("newCustomerForm").style.display = "block";
+  }
+
+  if (pickedCustomerForm == "consultant") {
+    document.getElementById("newConsultantForm").style.display = "block";
+  }
+});
+
+let newConsultant = document.getElementById("addNewConBtn");
+
+newConsultant.addEventListener("click", (e) => {
+  e.preventDefault();
+  let fullName = document.getElementById("conFullName").value;
+  let emailAddress = document.getElementById("conEmail").value;
+  let phone = document.getElementById("conPhone").value;
+  let location = document.getElementById("location").value;
+  let camID = document.getElementById("camID").value;
+  let products = JSON.parse(localStorage.getItem("products"));
+  let dateInput = document.getElementById("custDate").value;
+  let date = Date.parse(document.getElementById("custDate").value);
+  console.log(dateInput, date);
+  let userID = uuid.v4();
+  let customerType = 'consultant'
+
+  if (
+    fullName == "" ||
+    emailAddress == "" ||
+    phone == "" ||
+    location == "" ||
+    camID == ""
+    // bmi == "" ||
+    // customerType == "Type" ||
+    // dateInput == ""
+  ) {
+    alert("Please, fill all fields to continue");
+    return;
+  }
+
+
+
+  const db = getDatabase();
+
+  const conDetails = {
+    fullName: fullName,
+    email: emailAddress,
+    phoneNumber: phone,
+    location,
+    cambridgeID: camID,
+    type: customerType,
+  };
+
+  set(ref(db, "consultant/" + `${userID}`), conDetails);
+  set(ref(db, "products/" + `${userID}/${date}`), products);
+
+  localStorage.removeItem("products");
+  alert("New Consultant Information Saved");
+  document.getElementById("conFullName").value = "";
+
+  document.getElementById("conEmail").value = "";
+  document.getElementById("conPhone").value = "";
+  document.getElementById("location").value = "";
+  document.getElementById("camID").value = "";
+
+  document.getElementById("newConsultantForm").style.display = "none";
 });
 
 let newCustomer = document.getElementById("addNewBtn");
@@ -48,13 +121,12 @@ newCustomer.addEventListener("click", (e) => {
   let weight = document.getElementById("weight").value;
   let height = document.getElementById("height").value;
   let bmi = document.getElementById("bmi").value;
-  let customerType = document.getElementById("customer").value;
-  let location = document.getElementById("location").value;
-  let camID = document.getElementById("camID").value;
+  // let customerType = document.getElementById("customer").value;
   let products = JSON.parse(localStorage.getItem("products"));
   let dateInput = document.getElementById("pick-date").value;
   let date = Date.parse(document.getElementById("pick-date").value);
   let userID = uuid.v4();
+  let customerType = 'regular'
 
   if (
     fullName == "" ||
@@ -65,21 +137,21 @@ newCustomer.addEventListener("click", (e) => {
     weight == "" ||
     height == "" ||
     bmi == "" ||
-    customerType == "Type" ||
+    // customerType == "Type" ||
     dateInput == ""
   ) {
     alert("Please, fill all fields to continue");
     return;
   }
 
-  if (customerType == "consultant") {
-    if (location == "" || camID == "") {
-      alert(
-        "You have selected Consultant, kindly fill the required fields to continue"
-      );
-      return;
-    }
-  }
+  // if (customerType == "consultant") {
+  //   if (location == "" || camID == "") {
+  //     alert(
+  //       "You have selected Consultant, kindly fill the required fields to continue"
+  //     );
+  //     return;
+  //   }
+  // }
 
   const db = getDatabase();
 
@@ -92,34 +164,34 @@ newCustomer.addEventListener("click", (e) => {
     weight,
     height,
     bmi,
-    // type: customerType,
-  };
-
-  const conDetails = {
-    fullName: fullName,
-    age,
-    gender,
-    email: emailAddress,
-    phoneNumber: phone,
-    weight,
-    height,
-    bmi,
     type: customerType,
-    location,
-    cambridgeID: camID,
   };
 
-  if (customerType == "consultant") {
-    set(ref(db, "consultant/" + `${userID}`), conDetails);
-    set(ref(db, "products/" + `${userID}/${date}`), products);
-  }
-  if (customerType == "regular") {
-    set(ref(db, "regular/" + `${userID}`), regDetails);
-    set(ref(db, "products/" + `${userID}/${date}`), products);
-  }
+  // const conDetails = {
+  //   fullName: fullName,
+  //   age,
+  //   gender,
+  //   email: emailAddress,
+  //   phoneNumber: phone,
+  //   weight,
+  //   height,
+  //   bmi,
+  //   type: customerType,
+  //   location,
+  //   cambridgeID: camID,
+  // };
+
+  // if (customerType == "consultant") {
+  //   set(ref(db, "consultant/" + `${userID}`), conDetails);
+  //   set(ref(db, "products/" + `${userID}/${date}`), products);
+  // }
+
+  set(ref(db, "regular/" + `${userID}`), regDetails);
+  set(ref(db, "products/" + `${userID}/${date}`), products);
+
   //alert('ended here')
   localStorage.removeItem("products");
-  alert("New Customer Information Saved");
+  alert("New Client Information Saved");
   document.getElementById("fullName").value = "";
   document.getElementById("age").value = "";
   document.getElementById("email").value = "";
@@ -138,17 +210,17 @@ function closeNewCustomerFormModal() {
   document.getElementById("newCustomerForm").style.display = "none";
 }
 
-let customer = document.getElementById("customer");
+// let customer = document.getElementById("customer");
 
-customer.addEventListener("input", () => {
-  let customerT = document.getElementById("customer").value;
+// customer.addEventListener("input", () => {
+//   let customerT = document.getElementById("customer").value;
 
-  if (customerT == "consultant") {
-    document.getElementById("consultantDetails").style.display = "flex";
-  } else {
-    document.getElementById("consultantDetails").style.display = "none";
-  }
-});
+//   if (customerT == "consultant") {
+//     document.getElementById("consultantDetails").style.display = "flex";
+//   } else {
+//     document.getElementById("consultantDetails").style.display = "none";
+//   }
+// });
 
 let updateBtn = document.getElementById("update");
 
@@ -158,12 +230,22 @@ updateBtn.addEventListener("click", (e) => {
 });
 
 const closeBtnFour = document.querySelector(".closeFour");
+const closeBtnFive = document.querySelector(".closeFive");
+const closeBtnSix = document.querySelector(".closeSix");
 
 closeBtnFour.addEventListener("click", closeOldUpdateModal);
 
 function closeOldUpdateModal() {
   document.getElementById("customerPicker").style.display = "none";
 }
+
+closeBtnFive.addEventListener('click', ()=>{
+  document.getElementById("newConsultantForm").style.display = "none";
+})
+
+closeBtnSix.addEventListener('click', ()=>{
+  document.getElementById("selectNewCustomerForm").style.display = "none";
+})
 
 let pickCustomer = document.getElementById("pickCustomer");
 
@@ -178,43 +260,48 @@ pickCustomer.addEventListener("input", () => {
 
     onValue(conRef, (snapshot) => {
       const consultantRef = snapshot.val();
+      
 
       // console.log(consultantRef);
       let dataTb = document.getElementById("dataTb");
       dataTb.innerHTML = "";
+      let dataTheading = document.getElementById("tHeading");
+      dataTheading.innerHTML = "";
+
+      let headContent = `
+      <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Cam ID</th>
+      <th>Location</th>
+      </tr>
+      `;
+      dataTheading.innerHTML += headContent;
 
       for (const key in consultantRef) {
         const consDB = consultantRef[key];
         // let dataTb = document.getElementById("dataTb");
 
         const {
-          age,
-          bmi,
           cambridgeID,
           email,
           fullName,
-          gender,
-          height,
           phoneNumber,
+          location,
           type,
-          weight,
         } = consDB;
 
         console.log(cambridgeID);
-        console.log(bmi);
+        // const type = "consultant"
 
         let resultContent = `
            <tr>
            <td>${fullName}</td> 
-           <td>${age}</td>
-           <td>${gender}</td>
            <td>${email}</td>
            <td>${phoneNumber}</td>
-           <td>${height}</td>
-           <td>${weight}</td>
-           <td>${bmi}</td>
-           <td>${type}</td>
            <td>${cambridgeID}</td>
+           <td>${location}</td>    
            <td>
            <button onclick="orderHistory('${key}')">Order History</button>
            </td>
@@ -227,6 +314,7 @@ pickCustomer.addEventListener("input", () => {
         // result.innerHTML += resultContent;
         dataTb.innerHTML += resultContent;
       }
+      // dataTheading.innerHTML += headContent;
     });
   }
 
@@ -239,6 +327,22 @@ pickCustomer.addEventListener("input", () => {
 
       let dataTb = document.getElementById("dataTb");
       dataTb.innerHTML = "";
+      let dataTheading = document.getElementById("tHeading");
+      dataTheading.innerHTML = "";
+
+      let headContent = `
+      <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>BMI</th>
+      </tr>
+      `;
+      dataTheading.innerHTML += headContent;
       for (const key in regularRef) {
         const regDB = regularRef[key];
 
@@ -267,8 +371,6 @@ pickCustomer.addEventListener("input", () => {
            <td>${height}</td>
            <td>${weight}</td>
            <td>${bmi}</td>
-           <td>-</td>    
-           <td>-</td>  
            <td>
            <button onclick="orderHistory('${key}')">Order History</button>
            </td>
@@ -291,14 +393,21 @@ window.orderHistory = (key) => {
   const orderRef = ref(db, "products/" + key);
   onValue(orderRef, (snapshot) => {
     const orderHistory = snapshot.val();
-    var orderItems = document.getElementsByClassName("modal-body")[0];
+    var orderItems = document.getElementById("modal-order");
     orderItems.innerHTML = "";
     for (const key in orderHistory) {
       const history = orderHistory[key];
-
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
       const date = parseInt(key);
       const dateOfPurchase = new Date(date);
-      const purchaseDate = dateOfPurchase.toDateString();
+      // const purchaseDate = dateOfPurchase.toDateString();
+      // const purchaseDate = dateOfPurchase.toLocaleDateString('en-GB');
+      const purchaseDate = dateOfPurchase.toLocaleDateString("en-GB", options);
 
       let purchaseheader = document.createElement("h5");
       purchaseheader.innerHTML = purchaseDate;
@@ -385,7 +494,15 @@ window.editProfile = (key, type) => {
       document.getElementById("weightEdit").value = weight;
       document.getElementById("heightEdit").value = height;
       document.getElementById("bmiEdit").value = bmi;
+      document.getElementById("weightCon").style.display = 'block';
+      document.getElementById("heightCon").style.display = 'block';
+      document.getElementById("bmiCon").style.display = 'block';
+      document.getElementById("ageCon").style.display = 'block';
+      // document.getElementById("clientOnly").style.display = "flex";
     });
+    
+  }else{
+    // document.getElementById("clientOnly").style.display = "none";
   }
   if (type == "consultant") {
     const editCon = ref(db, `${type}/${key}`);
@@ -412,18 +529,23 @@ window.editProfile = (key, type) => {
       console.log(cambridgeID);
       console.log(location);
       document.getElementById("fullNameEdit").value = fullName;
-      document.getElementById("ageEdit").value = age;
+      // document.getElementById("ageEdit").value = age;
+      document.getElementById("ageCon").style.display = 'none';
       document.getElementById("emailEdit").value = email;
       document.getElementById("phoneEdit").value = phoneNumber;
-      document.getElementById("weightEdit").value = weight;
-      document.getElementById("heightEdit").value = height;
-      document.getElementById("bmiEdit").value = bmi;
-      document.getElementById('camIDCon').style.display = 'block'
-      document.getElementById('camEdit').value = cambridgeID
+      document.getElementById("weightCon").style.display = 'none';
+      document.getElementById("heightCon").style.display = 'none';
+      document.getElementById("bmiCon").style.display = 'none';
+      // document.getElementById("weightEdit").value = weight;
+      // document.getElementById("heightEdit").value = height;
+      // document.getElementById("bmiEdit").value = bmi;
+      document.getElementById("camIDCon").style.display = "block";
+      document.getElementById("camEdit").value = cambridgeID;
+      document.getElementById("locCon").style.display = "block";
+      document.getElementById("locEdit").value = location;
     });
-  } 
-  else{
-    document.getElementById('camIDCon').style.display = 'none'
+  } else {
+    document.getElementById("camIDCon").style.display = "none";
   }
 
   document.getElementById("updateContainer").style.display = "block";
@@ -445,7 +567,7 @@ const updProfile = (e) => {
   let weight = document.getElementById("weightEdit").value;
   let height = document.getElementById("heightEdit").value;
   let bmi = document.getElementById("bmiEdit").value;
-  let camID = document.getElementById('camEdit').value
+  let camID = document.getElementById("camEdit").value;
 
   let details = {
     fullName: fullName,
@@ -455,13 +577,13 @@ const updProfile = (e) => {
     weight,
     height,
     bmi,
-  }
+  };
 
-  if(camID !== ''){
+  if (camID !== "") {
     details = {
       ...details,
-      cambridgeID: camID
-    }
+      cambridgeID: camID,
+    };
   }
 
   const db = getDatabase();
@@ -490,7 +612,7 @@ searchBtn.addEventListener("click", (e) => {
   // console.log(searchInput);
   // console.log(searchValue)
 
-  let content = document.getElementsByTagName('tr');
+  let content = document.getElementsByTagName("tr");
 
   for (let j = 0; j < content.length; j++) {
     const contentName = content[j].getElementsByTagName("td");
@@ -527,8 +649,10 @@ for (let index = 0; index < productItems.length; index++) {
 function openQualityModal(e) {
   document.getElementById("productQuantity").style.display = "block";
   document.getElementById("productQuantityOne").style.display = "block";
+  document.getElementById("productQuantityTwo").style.display = "block";
   document.getElementById("selectedProduct").value = e.target.innerText;
   document.getElementById("selectedProductOne").value = e.target.innerText;
+  document.getElementById("selectedProductTwo").value = e.target.innerText;
 }
 
 let saveBtn = document.getElementById("saveProduct");
@@ -539,12 +663,17 @@ function saveProductToLocalStorage(e) {
   e.preventDefault();
   let productInput = document.getElementById("selectedProduct").value;
   let quantityInput = document.getElementById("quantity").value;
+  let dateInput = document.getElementById("pick-date").value;
 
   if (productInput == "" || quantityInput == "") {
     alert("please, fill fields to continue");
     return;
   }
 
+  if (dateInput == "") {
+    alert("please, pick a date to continue");
+    return;
+  }
   const productDetails = {
     productName: productInput,
     quantity: quantityInput,
@@ -564,7 +693,7 @@ function saveProductToLocalStorage(e) {
   for (const key in productsSoFar) {
     const singleProduct = productsSoFar[key];
 
-    let productsSoF = document.getElementsByClassName("productsSoFar")[0];
+    let productsSoF = document.getElementsByClassName("productsSoFar")[1];
 
     const { productName, quantity } = singleProduct;
 
@@ -585,9 +714,14 @@ newSaveBtn.addEventListener("click", (e) => {
   e.preventDefault();
   let productInput = document.getElementById("selectedProductOne").value;
   let quantityInput = document.getElementById("quantityOne").value;
+  let dateInput = document.getElementById("input").value;
 
   if (productInput == "" || quantityInput == "") {
     alert("please, fill fields to continue");
+    return;
+  }
+  if (dateInput == "") {
+    alert("please, pick a date to continue");
     return;
   }
 
@@ -610,7 +744,7 @@ newSaveBtn.addEventListener("click", (e) => {
   for (const key in productsSoFar) {
     const singleProduct = productsSoFar[key];
 
-    let productsSoF = document.getElementsByClassName("productsSoFar")[1];
+    let productsSoF = document.getElementsByClassName("productsSoFar")[2];
 
     const { productName, quantity } = singleProduct;
 
@@ -623,6 +757,59 @@ newSaveBtn.addEventListener("click", (e) => {
   }
   document.getElementById("selectedProductOne").value = "";
   document.getElementById("quantityOne").value = "";
+});
+
+let newSaveBtnTwo = document.getElementById("saveNewProductTwo");
+
+newSaveBtnTwo.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("heyy");
+  let dateInput = document.getElementById("custDate").value;
+  let productInput = document.getElementById("selectedProductTwo").value;
+  let quantityInput = document.getElementById("quantityTwo").value;
+  console.log(productInput, quantityInput);
+
+  if (productInput == "" || quantityInput == "") {
+    alert("please, fill fields to continue");
+    return;
+  }
+  if (dateInput == "") {
+    alert("please, pick a date to continue");
+    return;
+  }
+
+  const newProductDetails = {
+    productName: productInput,
+    quantity: quantityInput,
+  };
+
+  const storedProduct = localStorage.getItem("newProducts");
+
+  const storageProducts = storedProduct ? JSON.parse(storedProduct) : [];
+
+  storageProducts.push(newProductDetails);
+
+  localStorage.setItem("newProducts", JSON.stringify(storageProducts));
+
+  const productsSoFar = JSON.parse(localStorage.getItem("newProducts"));
+  // console.log(productsSoFar);
+
+  for (const key in productsSoFar) {
+    const singleProduct = productsSoFar[key];
+
+    let productsSoF = document.getElementsByClassName("productsSoFar")[0];
+
+    const { productName, quantity } = singleProduct;
+
+    let productsContent = `
+   <p>Product Name: ${productName}</p>
+   <p>Quantity Ordered: ${quantity}</p>
+    `;
+
+    productsSoF.innerHTML += productsContent;
+  }
+  document.getElementById("selectedProductTwo").value = "";
+  document.getElementById("quantityTwo").value = "";
 });
 
 let addNewProductsBtn = document.getElementById("addNewProductsBtn");
