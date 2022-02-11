@@ -511,20 +511,16 @@ window.editProfile = (key, type) => {
       const editConProfile = snapshot.val();
 
       const {
-        age,
-        bmi,
         cambridgeID,
         email,
         fullName,
-        gender,
-        height,
         location,
         phoneNumber,
         type,
-        weight,
+        
       } = editConProfile;
 
-      console.log(gender);
+      // console.log(gender);
       console.log(type);
       console.log(cambridgeID);
       console.log(location);
@@ -568,23 +564,44 @@ const updProfile = (e) => {
   let height = document.getElementById("heightEdit").value;
   let bmi = document.getElementById("bmiEdit").value;
   let camID = document.getElementById("camEdit").value;
+  let loc = document.getElementById("locEdit").value;
 
   let details = {
     fullName: fullName,
-    age,
+    // age,
     email: emailAddress,
     phoneNumber: phone,
-    weight,
-    height,
-    bmi,
+    // weight,
+    // height,
+    // bmi,
   };
-
-  if (camID !== "") {
+  if(type == "regular"){
+    details = {
+      ...details,
+      weight,
+      height,
+      bmi,
+      age,
+    }
+  }
+  if (type == "consultant") {
     details = {
       ...details,
       cambridgeID: camID,
+      location: loc
     };
   }
+  
+  
+
+  // if (camID !== "") {
+  //   details = {
+  //     ...details,
+  //     cambridgeID: camID,
+  //   };
+  // }
+  
+
 
   const db = getDatabase();
   update(ref(db, `${type}/${key}`), details);
