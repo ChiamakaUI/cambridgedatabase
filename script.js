@@ -1,11 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 // import { v4 as uuidv4 } from "uuid";
 
-// import {
-//   getAuth,
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-// } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import {
+  getAuth,
+  // createUserWithEmailAndPassword,
+  // signInWithEmailAndPassword,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 import {
   getDatabase,
   set,
@@ -65,7 +66,7 @@ newConsultant.addEventListener("click", (e) => {
   let date = Date.parse(document.getElementById("custDate").value);
   console.log(dateInput, date);
   let userID = uuid.v4();
-  let customerType = 'consultant'
+  let customerType = "consultant";
 
   if (
     fullName == "" ||
@@ -80,8 +81,6 @@ newConsultant.addEventListener("click", (e) => {
     alert("Please, fill all fields to continue");
     return;
   }
-
-
 
   const db = getDatabase();
 
@@ -126,7 +125,7 @@ newCustomer.addEventListener("click", (e) => {
   let dateInput = document.getElementById("pick-date").value;
   let date = Date.parse(document.getElementById("pick-date").value);
   let userID = uuid.v4();
-  let customerType = 'regular'
+  let customerType = "regular";
 
   if (
     fullName == "" ||
@@ -239,13 +238,13 @@ function closeOldUpdateModal() {
   document.getElementById("customerPicker").style.display = "none";
 }
 
-closeBtnFive.addEventListener('click', ()=>{
+closeBtnFive.addEventListener("click", () => {
   document.getElementById("newConsultantForm").style.display = "none";
-})
+});
 
-closeBtnSix.addEventListener('click', ()=>{
+closeBtnSix.addEventListener("click", () => {
   document.getElementById("selectNewCustomerForm").style.display = "none";
-})
+});
 
 let pickCustomer = document.getElementById("pickCustomer");
 
@@ -260,7 +259,6 @@ pickCustomer.addEventListener("input", () => {
 
     onValue(conRef, (snapshot) => {
       const consultantRef = snapshot.val();
-      
 
       // console.log(consultantRef);
       let dataTb = document.getElementById("dataTb");
@@ -494,14 +492,13 @@ window.editProfile = (key, type) => {
       document.getElementById("weightEdit").value = weight;
       document.getElementById("heightEdit").value = height;
       document.getElementById("bmiEdit").value = bmi;
-      document.getElementById("weightCon").style.display = 'block';
-      document.getElementById("heightCon").style.display = 'block';
-      document.getElementById("bmiCon").style.display = 'block';
-      document.getElementById("ageCon").style.display = 'block';
+      document.getElementById("weightCon").style.display = "block";
+      document.getElementById("heightCon").style.display = "block";
+      document.getElementById("bmiCon").style.display = "block";
+      document.getElementById("ageCon").style.display = "block";
       // document.getElementById("clientOnly").style.display = "flex";
     });
-    
-  }else{
+  } else {
     // document.getElementById("clientOnly").style.display = "none";
   }
   if (type == "consultant") {
@@ -517,7 +514,6 @@ window.editProfile = (key, type) => {
         location,
         phoneNumber,
         type,
-        
       } = editConProfile;
 
       // console.log(gender);
@@ -526,12 +522,12 @@ window.editProfile = (key, type) => {
       console.log(location);
       document.getElementById("fullNameEdit").value = fullName;
       // document.getElementById("ageEdit").value = age;
-      document.getElementById("ageCon").style.display = 'none';
+      document.getElementById("ageCon").style.display = "none";
       document.getElementById("emailEdit").value = email;
       document.getElementById("phoneEdit").value = phoneNumber;
-      document.getElementById("weightCon").style.display = 'none';
-      document.getElementById("heightCon").style.display = 'none';
-      document.getElementById("bmiCon").style.display = 'none';
+      document.getElementById("weightCon").style.display = "none";
+      document.getElementById("heightCon").style.display = "none";
+      document.getElementById("bmiCon").style.display = "none";
       // document.getElementById("weightEdit").value = weight;
       // document.getElementById("heightEdit").value = height;
       // document.getElementById("bmiEdit").value = bmi;
@@ -575,24 +571,22 @@ const updProfile = (e) => {
     // height,
     // bmi,
   };
-  if(type == "regular"){
+  if (type == "regular") {
     details = {
       ...details,
       weight,
       height,
       bmi,
       age,
-    }
+    };
   }
   if (type == "consultant") {
     details = {
       ...details,
       cambridgeID: camID,
-      location: loc
+      location: loc,
     };
   }
-  
-  
 
   // if (camID !== "") {
   //   details = {
@@ -600,8 +594,6 @@ const updProfile = (e) => {
   //     cambridgeID: camID,
   //   };
   // }
-  
-
 
   const db = getDatabase();
   update(ref(db, `${type}/${key}`), details);
@@ -849,3 +841,24 @@ addNewProductsBtn.addEventListener("click", (e) => {
 });
 
 // }) THIS IS FOR THE DOMLOADED EVENT LISTENER
+
+const logOut = document.getElementById("logout");
+
+logOut.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const auth = getAuth();
+
+  signOut(auth)
+    .then(() => {
+      console.log("signed out");
+      window.location.href = "index.html";
+    })
+    .catch((error) => {
+      let error_code = error.code;
+      let error_message = error.message;
+
+      console.log(error_message);
+      alert(error_code);
+    });
+});
