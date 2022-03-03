@@ -535,9 +535,7 @@ td {
 @media (max-width: 480px) {
   .contain-logo img {
     width: 100px;
-    /* width: 120px; */
     height: 50px;
-    /* height: 85px; */
   }
 
   .contain-button {
@@ -552,20 +550,13 @@ td {
 
   .contain-form {
     width: 95%;
-    /* margin: 7% auto; */
   }
   .modal-content {
     width: 100%;
-    /* padding: 20px; */
   }
-
-  /* #newCustomerForm{
-  padding: 20px;
-} */
 
   #customerPicker {
     display: none;
-    /* padding: 20px; */
   }
 
   .modal-content-cus {
@@ -583,5 +574,39 @@ td {
 
   #addNewProductsBtn {
     margin-top: 5%;
+  }
+  .contain-form-home {
+    width: 88%;
+    margin: 12% auto;
+    display: block;
+    padding: 30px;
+    background-image: url("home.png");
+    height: 500px; 
+    background-position: center; 
+    /* background-repeat: no-repeat; 
+    background-size: cover;  */
+  }
+  
+  #first img {
+    display: none;
+  }
+  
+  #second {
+    width: 100%;
+    margin: 5% auto;
+  }
+  
+  #second form {
+    width: 100%;
+  }
+  
+  #second form input {
+    padding: 12px;
+  }
+  #loginBtn {
+    width: 100%;
+  }
+  #forgot {
+      margin: 5% 0;
   }
 }
